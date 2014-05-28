@@ -1,0 +1,6 @@
+*
+!.gitignore
+!*.hs
+!dataset.txt
+!*/
+!*.md
