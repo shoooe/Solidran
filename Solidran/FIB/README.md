@@ -1,4 +1,4 @@
-###Rabbits and Recurrence Relations
+###[Rabbits and Recurrence Relations](http://rosalind.info/problems/fib/)
 
 ####Understanding the pattern
 
