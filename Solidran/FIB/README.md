@@ -5,15 +5,14 @@
 Taking a blackboard and drawing the example with `n = 5` and `k = 3`, easily leads to the pattern:
 
 ```haskell
-c = b + k * a
+F[n] = F[n-1] + k * F[n-2]
 ```
 
-assuming `b` to be the previous number and `a` the number before that (a, b, c, ...), in the sequence.
-Of course the classical Fibonacci sequence is given by `k = 1`.
+where `F[i]` is the `i`th number of the sequence.
 
 ####First *iteration*
 
-The first version you can come up with is a basic, more general, version of the fibonacci recursion:
+The simplest version of the algorithm:
 
 ```haskell
 func :: Int -> Int -> Int
@@ -22,18 +21,24 @@ func n k
     | otherwise = (func (n-1) k) + (k * func (n-2) k)
 ```
 
-In the case where `n < 3` (basically either `1` or `2`, given the preconditions), the function is asking us the first or the second number of the sequence, that we know to be `1` in both cases. 
+is a generalization of the classical fibonacci recursive example.
 
-We can test this by displaying the first 10 digits of the well know fibonacci sequence:
+When `n < 3`, which happens either with `n == 1` or `n == 2` given the preconditions, the result is trivially `1`. In any other case we apply the above formula. 
+
+We can test this by displaying the first 10 digits of the well know fibonacci sequence. Given the Fibonacci sequence:
 
 ```haskell
 fib :: Int -> Int
 fib n = func n 1
-
-main = print . map fib $ [1..10]
 ```
 
-The output is:
+then:
+
+```haskell
+map fib $ [1..10]
+```
+
+results in:
 
 ```
 [1,1,2,3,5,8,13,21,34,55]
@@ -41,9 +46,9 @@ The output is:
 
 ####The problem
 
-By testing the above solution with the maximum values given (`n = 40` and `k = 5`) it becomes clear the algorithm takes too much time (~3 seconds) to execute. 
+If you test the algorithm with high values (without overflowing) it becomes clear there's something wrong. Using the maximum values from the dataset (`n = 40` and `k = 5`) it takes ~3 seconds to run. 
 
-The main problem is that we are recursively repeating the calculation of well know solutions. For example given `n = 5` and `k = 2` (consider `F[n]` to be `func n 2`):
+The main problem is that we are recursively repeating the calculation of well know sequences. For example given `n = 5` and `k = 2` (consider `F[n]` to be `func n 2`):
 
 ```
 F[5]
@@ -56,11 +61,11 @@ F[2] + k * F[1] + k * F[2] + k * (F[2] + k * F[1])
 11
 ```
 
-You can see that at some point `F[3]` is calculated 2 times.
+You can see that at some point `F[3]` is calculated 2 times. This is just an example, but it's clear that this waste propagates almost exponentially.
 
 ####We need to go faster!
 
-I know there's probably a better algorithm, but the one I came up with takes in consideration that we only need two elements of the sequence to calculate the next:
+Let's take in consideration that we only need two elements of the sequence to calculate the next. And let's define a function that, given a sequence and `k`, calculates the next sequence:
 
 ```haskell
 nextPair :: Int -> (Int, Int) -> (Int, Int)
@@ -68,7 +73,7 @@ nextPair k (a, b) = (b, c)
     where c = b + (k * a)
 ```
 
-The above function takes a `k` and a pair of ordered numbers in the sequence and returns the next. For example, the following are the pair of numbers starting from `(0, 1)` for `k = 1`:
+As an example, for `k = 1` and starting from `(0, 1)` the sequence of pairs would be:
 
 ```
 (1, 1)
@@ -78,7 +83,9 @@ The above function takes a `k` and a pair of ordered numbers in the sequence and
 (5, 8)
 ```
 
-It's clear that if we need to calculate the third iteration we just need to repeat the call to `nextPair` 3 times. Assuming:
+If we need to calculate the nth iteration, we just need to repeat the call to `nextPair` n times. 
+
+Assuming the Fibonacci sequence:
 
 ```haskell
 fib :: (Int, Int) -> (Int, Int)
@@ -91,9 +98,9 @@ then:
 fib . fib . fib $ (0, 1)
 ```
 
-will return `(2, 3)`.
+will return `(2, 3)`, which is correctly the 3rd and 4th elements of the sequence.
 
-Let's define a function that helps us to compose a function n times and apply an initial argument to it:
+Now we need a simpler way to compose this function n times. Let's define a function that takes a function, the number of times to compose it for and an initial value. The result of the function will be the result of applying the input function n times over the initial value:
 
 ```haskell
 replicateFunc :: (a -> a) -> Int -> a -> a
@@ -101,9 +108,7 @@ replicateFunc _  0     start = start
 replicateFunc fn count start = replicateFunc fn (count-1) (fn start)
 ```
 
-The above is some very basic recursion. We pass the function, the number of times we want to repeat it and the first (initial) value.
-
-Now we only need to wire all up into the solution:
+Now we only need to wire it all up into the solution:
 
 ```haskell
 rabbitsCount :: Int -> Int -> Int
@@ -114,9 +119,9 @@ rabbitsCount n k
             where fn = nextPair k
 ```
 
-We apply our `nextPair` function `n` times with the `k` argument and we just take the second element of the resulting tuple (which is the last one of our calculated sequence).
+We apply our `nextPair` function `n` times, with the `k` argument, and take the second element of the resulting tuple (which is the last one of our calculated sequence).
 
-Let's see how the `n = 5` and `k = 2` example gets calculated this time (given `F` = nextPair 2)
+Let's see how the `n = 5` and `k = 2` example gets calculated this time (given `F = nextPair 2`)
 
 ```
 snd . F . F . F $ (1, 1)
@@ -126,7 +131,7 @@ snd (5, 11)
 11
 ```
 
-Which is basically the calculation of the sequence from the start (remembering the last 2 elements) until we need to. The most important detail is that we are not calculating anything twice.
+The most important detail is that we are not calculating anything twice.
 
 ####Benchmarking
 
@@ -143,9 +148,9 @@ defaultMain
     ]
 ```
 
-I've reduced the samples to `50` per benchmark otherwise the default 100 would have take a lot of time (the thid benchmark, with `func 35 3`, took more than a minute alone).
+I've reduced the samples to `50` per benchmark, otherwise the default 100 would have taken too much time (`func 35 3` took more than a minute alone).
 
-The results are as follows (I'm only mentioning the mean):
+The results are as follows (the value displayed is the mean):
 
 ```
 func 15 3           -> 91.30113 us
