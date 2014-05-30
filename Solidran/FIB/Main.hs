@@ -13,6 +13,7 @@ rabbitsCount n k
         snd $ replicateFunc fn (n-2) (1, 1)
             where fn = nextPair k
 
+main :: IO ()
 main = do
     ln <- getLine
     let [n, k] = map read $ words ln

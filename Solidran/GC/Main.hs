@@ -44,4 +44,5 @@ showOutput str =
     let res = map calcResult . parseInput . Text.pack $ str
     in showResult . maximum $ res
 
+main :: IO ()
 main = getContents >>= (putStr . showOutput)

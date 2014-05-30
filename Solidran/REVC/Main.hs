@@ -6,4 +6,5 @@ complementDna = reverse . map comp
         comp 'C' = 'G'
         comp 'G' = 'C'
 
+main :: IO ()
 main = getLine >>= putStr . complementDna

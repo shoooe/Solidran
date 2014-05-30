@@ -14,4 +14,5 @@ countLetters str = foldr incr (0, 0, 0, 0) str
 showResult :: Count -> IO ()
 showResult (a, c, g, t) = putStr . intercalate " " . map show $ [a, c, g, t]
 
+main :: IO ()
 main = getLine >>= showResult . countLetters
