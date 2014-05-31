@@ -17,7 +17,9 @@ j  = k + n + m
 
 the tree diagram for this problem is not particularly hard to draw:
 
-![The probability tree diagram](probability_tree.png)
+<p align="center">
+	<img src="probability_tree.png" alt="The probability tree diagram"/>
+</p>
 
 The overall idea of our program will be: given `k`, `m` and `n`, calculate the probability of each branch (from root to leaves) and then sum them all together.
 
