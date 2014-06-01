@@ -1,4 +1,4 @@
-###
+###[Translating RNA into Protein](http://rosalind.info/problems/prot/)
 
 ####Generating the Map
 
