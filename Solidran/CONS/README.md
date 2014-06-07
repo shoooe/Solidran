@@ -5,20 +5,11 @@
 I've wrongly assumed that the give example dataset:
 
 ```
->Rosalind_1
-ATCCAGCT
->Rosalind_2
-GGGCAACT
->Rosalind_3
-ATGGATCT
->Rosalind_4
-AAGCAACC
->Rosalind_5
-TTGGAACT
->Rosalind_6
-ATGCCATT
->Rosalind_7
-ATGGCACT
+>label 1
+DNA string 1
+>label 2
+DNA string 2
+...
 ```
 
 would mean that we would receive 20 lines for 10 DNA strings (a pair of label and line for each).
@@ -27,12 +18,12 @@ The real dataset format is in the form:
 
 ```
     >label1
-    DNA part1
-    DNA part2
+    DNA string 1 part 1
+    DNA string 1 part 2
     ...
     >label
-    DNA part1
-    DNA part2
+    DNA string 2 part 1
+    DNA string 2 part 2
     ...
 ...
 ```
