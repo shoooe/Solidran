@@ -17,11 +17,11 @@ would mean that we would receive 20 lines for 10 DNA strings (a pair of label an
 The real dataset format is in the form:
 
 ```
-    >label1
+    >label 1
     DNA string 1 part 1
     DNA string 1 part 2
     ...
-    >label
+    >label 2
     DNA string 2 part 1
     DNA string 2 part 2
     ...
