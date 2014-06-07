@@ -2,7 +2,7 @@
 
 ####Don't assume
 
-I've wrongly assumed that the give example dataset:
+I've wrongly assumed that the given example dataset:
 
 ```
 >label 1
@@ -30,30 +30,6 @@ The real dataset format is in the form:
 
 that is: the DNA string can be split between lines.
 
-####Our beloved `splitBy`
-
-First of all let's take our `splitBy` missing function that takes a list of elements and splits them by a predicate. The behavior should be:
-
-```haskell
-splitBy ',' "1,2,3,4"
--- ['1', '2', '3', '4']
-
-splitBy ',' ""
--- []
-```
-
-and here's the implementation:
-
-```haskell
-splitBy :: (a -> Bool) -> [a] -> [[a]]
-splitBy _ [] = []
-splitBy c ls = 
-    let (l, r) = span (not . c) ls
-    in l : (splitBy c . drop 1 $ r)
-```
-
-that uses `span` to divide each segments and just remembers to `drop 1` element at the beginning (the second element of the returned tuple still contains the element that satisfied the predicate).
-
 ####Read input
 
 Given the considerations above we need to:
@@ -65,35 +41,6 @@ Given the considerations above we need to:
 ```haskell
 readInput :: String -> [String]
 readInput = filter (/="") . map concat . splitBy ((=='>') . head) . lines
-```
-
-####Utility functions
-
-Let's define a function that folds on a matrix (seen as a list of list) on the right, by its columns:
-
-```haskell
-foldRCol :: ([a] -> b -> b) -> b -> [[a]] -> b
-foldRCol fn c l =
-    if null heads 
-        then c
-        else heads `fn` foldRCol fn c tails
-    where heads = concat . map (take 1) $ l
-          tails = map (drop 1) l
-```
-
-, a function that counts the occurrences of an element in a list:
-
-```haskell
-countElem :: Eq a => [a] -> a -> Int
-countElem ls e = length $ filter (== e) ls
-```
-
-and finally a function that, given a set of elements, returns the one that appears most often:
-
-```haskell
-mostFrequent :: Eq a => [a] -> [a] -> a
-mostFrequent sm ls = fst $ maximumBy (compare `on` snd) $ map fn sm
-    where fn e = (e, length $ filter (==e) ls)
 ```
 
 ####Profile matrix

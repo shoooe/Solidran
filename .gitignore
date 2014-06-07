@@ -6,3 +6,5 @@
 !*/
 !*.md
 !*.png
+!*.cabal
+dist/
