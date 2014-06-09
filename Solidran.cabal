@@ -1,6 +1,6 @@
 name:               Solidran
 version:            0.1.0.0
-description:        Solutions to Rosalind problems
+description:        Solid solutions to Rosalind problems
 homepage:           https://github.com/Jefffrey/Solidran
 license:            MIT
 license-file:       LICENSE
@@ -10,12 +10,87 @@ build-type:         Simple
 extra-source-files: README.md
 cabal-version:      >=1.10
 
+executable DNA
+    main-is:                Solidran/DNA/Main.hs              
+    build-depends:       
+        base >= 4.6 && < 4.7
+    hs-source-dirs:         src
+    ghc-options:            -Wall -O2
+    default-language:       Haskell2010
+
+executable RNA
+    main-is:                Solidran/RNA/Main.hs              
+    build-depends:       
+        base >= 4.6 && < 4.7
+    hs-source-dirs:         src
+    ghc-options:            -Wall -O2
+    default-language:       Haskell2010
+
+executable REVC
+    main-is:                Solidran/REVC/Main.hs              
+    build-depends:       
+        base >= 4.6 && < 4.7
+    hs-source-dirs:         src
+    ghc-options:            -Wall -O2
+    default-language:       Haskell2010
+    
+executable FIB
+    main-is:                Solidran/FIB/Main.hs              
+    build-depends:       
+        base >= 4.6 && < 4.7
+    hs-source-dirs:         src
+    ghc-options:            -Wall -O2
+    default-language:       Haskell2010
+
+executable GC
+    main-is:                Solidran/GC/Main.hs              
+    build-depends:       
+        base >= 4.6 && < 4.7,
+        text >= 1.1 && < 1.2
+    hs-source-dirs:         src
+    ghc-options:            -Wall -O2
+    default-language:       Haskell2010
+
+executable HAMM
+    main-is:                Solidran/HAMM/Main.hs              
+    build-depends:       
+        base >= 4.6 && < 4.7
+    hs-source-dirs:         src
+    ghc-options:            -Wall -O2
+    default-language:       Haskell2010
+
+executable IPRB
+    main-is:                Solidran/IPRB/Main.hs              
+    build-depends:       
+        base >= 4.6 && < 4.7,
+        containers >= 0.5 && < 0.6,
+        mtl >= 2.2 && < 2.3
+    hs-source-dirs:         src
+    ghc-options:            -Wall -O2
+    default-language:       Haskell2010
+
+executable PROT
+    main-is:                Solidran/PROT/Main.hs              
+    build-depends:       
+        base >= 4.6 && < 4.7,
+        containers >= 0.5 && < 0.6
+    hs-source-dirs:         src
+    ghc-options:            -Wall -O2
+    default-language:       Haskell2010
+
+executable SUBS
+    main-is:                Solidran/SUBS/Main.hs              
+    build-depends:       
+        base >= 4.6 && < 4.7
+    hs-source-dirs:         src
+    ghc-options:            -Wall -O2
+    default-language:       Haskell2010
+
 executable CONS
     main-is:                Solidran/CONS/Main.hs              
-    other-modules:       
     build-depends:       
-        base >=4.6 && <4.7, 
-        containers >=0.5 && <0.6
+        base >= 4.6 && < 4.7, 
+        containers >= 0.5 && < 0.6
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
