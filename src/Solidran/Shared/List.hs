@@ -1,4 +1,4 @@
-module Shared.List 
+module Solidran.Shared.List 
     ( splitBy
     , countElem
     , countFrequency

@@ -3,7 +3,7 @@ import qualified Data.Map as Map
 import Data.List (intersperse, maximumBy, span)
 import Data.Function (on)
 import Prelude hiding (showList)
-import Shared.List 
+import Solidran.Shared.List 
     ( rightFoldCol
     , splitBy
     , countElem
