@@ -3,13 +3,11 @@ import qualified Data.Map as Map
 import Data.List (intersperse, maximumBy, span)
 import Data.Function (on)
 import Prelude hiding (showList)
-
 import Shared.List 
     ( rightFoldCol
     , splitBy
     , countElem
     , countFrequency )
-
 
 type ProfileMat = Map Char [Int]
 type Consensus  = [Char]
