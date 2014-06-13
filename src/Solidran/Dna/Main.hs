@@ -1,6 +1,7 @@
 module Main where
 
-import qualified Solidran.Dna.Counter as Counter
+import Solidran.Output (output)
+import Solidran.Dna.Nucleo (nucleoCount)
 
 main :: IO ()
-main = getLine >>= (print . Counter.count)
+main = getLine >>= (putStr . output . nucleoCount)
