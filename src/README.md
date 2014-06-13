@@ -2,9 +2,9 @@
 
 This folder contains shared functions and utilities.
 
-##`List`
+##List
 
-###The `countDistinct` function
+####The `countDistinct` function
 
 This function takes a list of elements and returns the `Map a Int` that *maps* each element to the number of times it is repeated inside the list:
 
@@ -16,6 +16,8 @@ countDistinct ls = foldr fn Map.empty ls
 
 The complexity is `O(n * log(k))` with `n` begin the size of the list and `k` being the number of different elements in the list. For most of our applications (in which `k == 4`) the actual complexity is `O(n)`.
 
-###The `Output` class
+##Output
+
+####The `Output` class
 
 This class defines all the elements that can be rendered (in the way Rosalind expects) as output. The only function defined in the class is `output` which, similarly for `show`, takes an object and returns its `String` representation.
