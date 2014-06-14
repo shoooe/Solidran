@@ -21,3 +21,9 @@ The complexity is `O(n * log(k))` with `n` begin the size of the list and `k` be
 ####The `Output` class
 
 This class defines all the elements that can be rendered (in the way Rosalind expects) as output. The only function defined in the class is `output` which, similarly for `show`, takes an object and returns its `String` representation.
+
+##Function
+
+####The `composeN` function
+
+This function takes a number `n` and a function from any type to the same type (due to function composition rules) and composes the function `n` times with itself.

@@ -100,23 +100,13 @@ fib . fib . fib $ (0, 1)
 
 will return `(2, 3)`, which is correctly the 3rd and 4th elements of the sequence.
 
-Now we need a simpler way to compose this function n times. Let's define a function that takes a function, the number of times to compose it for and an initial value. The result of the function will be the result of applying the input function n times over the initial value:
-
-```haskell
-replicateFunc :: (a -> a) -> Int -> a -> a
-replicateFunc _  0     start = start
-replicateFunc fn count start = replicateFunc fn (count-1) (fn start)
-```
-
-Now we only need to wire it all up into the solution:
+Given our `composeN` function (located in `Solidran.Function`), that composes a function `n` times, we just need to wire it all up into the solution:
 
 ```haskell
 rabbitsCount :: Int -> Int -> Int
 rabbitsCount n k
     | n < 3     = 1
-    | otherwise = 
-        snd $ replicateFunc fn (n-2) (1, 1)
-            where fn = nextPair k
+    | otherwise = snd $ composeN (nextPair k) (n-2) (1, 1)
 ```
 
 We apply our `nextPair` function `n` times, with the `k` argument, and take the second element of the resulting tuple (which is the last one of our calculated sequence).
