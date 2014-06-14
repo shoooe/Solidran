@@ -1,8 +1,4 @@
-dnaToRna :: String -> String
-dnaToRna = map toU
-    where
-        toU 'T' = 'U'
-        toU  c  =  c
+import Solidran.Rna.Detail (dnaToRna)
 
 main :: IO ()
-main = getLine >>= putStr . dnaToRna
+main = getLine >>= (putStr . dnaToRna)
