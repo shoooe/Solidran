@@ -1,10 +1,4 @@
-complementDna :: String -> String
-complementDna = reverse . map comp
-    where
-        comp 'A' = 'T'
-        comp 'T' = 'A'
-        comp 'C' = 'G'
-        comp 'G' = 'C'
+import Solidran.Revc.Detail (complementDna)
 
 main :: IO ()
-main = getLine >>= putStr . complementDna
+main = getLine >>= (putStr . complementDna)
