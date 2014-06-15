@@ -5,6 +5,7 @@ module Solidran.Gc.Detail
 import Solidran.List (countIf)
 import Data.List (maximumBy)
 import Data.Function (on)
+import Data.Map (Map)
 import qualified Solidran.Fasta as Fasta
 import qualified Data.Map as Map
 
@@ -16,7 +17,7 @@ calcPercent ls str =
     where is  = countIf (`elem` ls) str
           tot = length str
 
-highestContent :: [Char] -> String -> (String, Double)
-highestContent ls str =
+highestContent :: [Char] -> Map String String -> (String, Double)
+highestContent ls mp =
     maximumBy (compare `on` snd) list
-        where list = Map.toList . Map.map (calcPercent ls) $ (Fasta.parse str)
+        where list = Map.toList . Map.map (calcPercent ls) $ mp

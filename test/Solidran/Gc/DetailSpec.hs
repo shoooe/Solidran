@@ -2,14 +2,16 @@ module Solidran.Gc.DetailSpec (spec) where
 
 import Test.Hspec
 import Solidran.Gc.Detail
+import qualified Solidran.Fasta as Fasta
+import qualified Data.Map as Map
 
 spec :: Spec
 spec = do
     describe "Solidran.Gc.Detail" $ do
         it "should work on the sample" $ do
-            highestContent "GC" $
+            highestContent "GC" . Fasta.parse $
                 unlines
-                    [ ">Rosalind_6404"
+                    [ "Rosalind_6404"
                     , "CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCC"
                     , "TCCCACTAATAATTCTGAGG"
                     , ">Rosalind_5959"
@@ -21,7 +23,7 @@ spec = do
             `shouldBe`
                 ("Rosalind_0808", 60.91954022988506)
         it "should work on other strings" $ do
-            highestContent "GC" $
+            highestContent "GC" . Fasta.parse $
                 unlines 
                     [ ">abc"
                     , "CCGA"
@@ -32,7 +34,7 @@ spec = do
             `shouldBe`
                 ("abc", 50.0)
         it "should work with values on a single line" $ do
-            highestContent "GC" $
+            highestContent "GC" . Fasta.parse $
                 unlines 
                     [ ">abc"
                     , "ACCGE"
@@ -43,7 +45,7 @@ spec = do
             `shouldBe`
                 ("def", 100)
         it "should work with any letter" $ do
-            highestContent "A" $
+            highestContent "A" . Fasta.parse $
                 unlines 
                     [ ">abc"
                     , "ACCGEEEF"
@@ -54,7 +56,7 @@ spec = do
             `shouldBe`
                 ("def", 75.0)  
         it "should work with more than two letters" $ do
-            highestContent "AGI" $
+            highestContent "AGI" . Fasta.parse $
                 unlines 
                     [ ">abc"
                     , "ACCGEEEF"
@@ -65,7 +67,7 @@ spec = do
             `shouldBe`
                 ("def", 100.0) 
         it "should work with empty strings" $ do
-            highestContent "ABCDEF" $
+            highestContent "ABCDEF" . Fasta.parse $
                 unlines 
                     [ ">abc"
                     , ""
