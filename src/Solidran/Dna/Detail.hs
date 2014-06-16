@@ -1,4 +1,4 @@
-module Solidran.Dna.Nucleo where
+module Solidran.Dna.Detail where
 
 import Data.Map (Map)
 import Solidran.List (countDistinct)
