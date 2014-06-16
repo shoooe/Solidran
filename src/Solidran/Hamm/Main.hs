@@ -1,10 +1,6 @@
-hammingDist :: String -> String -> Int
-hammingDist a b = foldr fn 0 z
-    where 
-        fn (a, b) c
-            | a == b    = c
-            | otherwise = c + 1
-        z = zip a b
+module Main where
+
+import Solidran.Hamm.Detail
 
 main :: IO ()
 main = do
