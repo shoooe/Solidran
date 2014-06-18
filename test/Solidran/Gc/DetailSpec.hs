@@ -8,7 +8,7 @@ import qualified Data.Map as Map
 spec :: Spec
 spec = do
     describe "Solidran.Gc.Detail" $ do
-        desribe "highestContent" $ do
+        describe "highestContent" $ do
             it "should work on the sample" $ do
                 highestContent "GC" . Fasta.parse $
                     unlines

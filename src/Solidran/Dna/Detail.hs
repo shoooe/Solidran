@@ -6,8 +6,8 @@ import qualified Data.Map as Map
 
 nucleoCount :: String -> [Int]
 nucleoCount string =
-    let map = countDistinct string
-    in      [ Map.findWithDefault 0 'A' map
-            , Map.findWithDefault 0 'C' map 
-            , Map.findWithDefault 0 'G' map 
-            , Map.findWithDefault 0 'T' map ]
+    let mp = countDistinct string
+    in      [ Map.findWithDefault 0 'A' mp
+            , Map.findWithDefault 0 'C' mp 
+            , Map.findWithDefault 0 'G' mp 
+            , Map.findWithDefault 0 'T' mp ]
