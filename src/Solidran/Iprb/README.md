@@ -138,10 +138,10 @@ The function `prob` calculates the probability that a given `OrgType` is drawn f
 prob :: OrgType -> State Env Prob
 prob o = do
     m <- State.get
-    let (Just no) = Map.lookup o m
+    let no = fromMaybe 0 $ Map.lookup o m
     let tot = Map.foldr (+) 0 m
     if tot /= 0
-        then return $ (fromIntegral no) / (fromIntegral tot)
+        then return $ fromIntegral no / fromIntegral tot
         else return 0
 ```
 
