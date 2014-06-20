@@ -40,6 +40,18 @@ countIf p (x:xs) = c + countIf p xs
     where c = if p x then 1 else 0
 ```
 
+####The `groupEvery` function
+
+It's an utility function that takes a integer `n` and splits the given list into chunks of `n` elements. The only exception is for the last group of the list which can potentially be less than `n` elements long, if the initial number of elements is not divisible by `n`.
+
+```haskell
+groupEvery :: Int -> [a] -> [[a]]
+groupEvery 0 _ = []
+groupEvery e l
+    | length l > e  = (take e l) : (groupEvery e (drop e l))
+    | otherwise     = [l]
+```
+
 ##Output
 
 ####The `Output` class

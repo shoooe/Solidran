@@ -36,3 +36,18 @@ spec = do
                 countIf (=='A') "" `shouldBe` 0
             it "should count the number of elements that satisfy the predicate" $ do
                 countIf (=='C') "AYCGRIONCXCC" `shouldBe` 4
+        describe "groupEvery" $ do
+            it "should return an empty list on 0" $ do
+                groupEvery 0 "test" `shouldBe` []
+                groupEvery 0 [1, 2] `shouldBe` []
+            it "should return an empty list on an empty list" $ do
+                groupEvery 123 "" `shouldBe` []
+                --groupEvery 3 [] `shouldBe` []
+            it "should group by n elements" $ do
+                groupEvery 4 "1234567890ab" `shouldBe` ["1234", "5678", "90ab"]
+                groupEvery 1 "abcd" `shouldBe` ["a", "b", "c", "d"]
+                groupEvery 2 [4, 2, 6, 2] `shouldBe` [[4, 2], [6, 2]]
+            it "should return a partial last group in some cases" $ do
+                groupEvery 3 "1234lkjgsy" `shouldBe` ["123", "4lk", "jgs", "y"]
+                groupEvery 2 "1" `shouldBe` ["1"]
+                groupEvery 9 [9, 1, 45] `shouldBe` [[9, 1, 45]]

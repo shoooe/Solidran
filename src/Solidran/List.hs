@@ -2,6 +2,7 @@ module Solidran.List
     ( splitBy
     , countDistinct
     , countIf
+    , groupEvery
     ) where
 
 import Data.Map (Map)
@@ -21,3 +22,10 @@ countIf :: (a -> Bool) -> [a] -> Int
 countIf _ [] = 0
 countIf p (x:xs) = c + countIf p xs
     where c = if p x then 1 else 0
+
+groupEvery :: Int -> [a] -> [[a]]
+groupEvery 0 _ = []
+groupEvery _ [] = []
+groupEvery e l
+    | length l > e  = (take e l) : (groupEvery e (drop e l))
+    | otherwise     = [l]
