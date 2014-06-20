@@ -6,13 +6,12 @@ module Solidran.Shared.List
     , rightFoldCol ) 
     where
 
-import Data.List (span)
 import Data.Map (Map)
 import qualified Data.Map as Map
 
 countDistinct :: Ord a => [a] -> Map a Int
 countDistinct ls = foldr fn Map.empty ls
-    where fn e map = Map.insertWith (+) e 1 map
+    where fn e m = Map.insertWith (+) e 1 m
 
 splitBy :: (a -> Bool) -> [a] -> [[a]]
 splitBy _ [] = []

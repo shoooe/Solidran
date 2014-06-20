@@ -6,7 +6,6 @@ import Solidran.List (countIf)
 import Data.List (maximumBy)
 import Data.Function (on)
 import Data.Map (Map)
-import qualified Solidran.Fasta as Fasta
 import qualified Data.Map as Map
 
 calcPercent :: [Char] -> String -> Double

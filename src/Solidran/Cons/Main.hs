@@ -1,6 +1,6 @@
 import Data.Map (Map)
 import qualified Data.Map as Map
-import Data.List (intersperse, maximumBy, span)
+import Data.List (intersperse, maximumBy)
 import Data.Function (on)
 import Prelude hiding (showList)
 import Solidran.Shared.List 
