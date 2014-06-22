@@ -34,13 +34,13 @@ that is: the DNA string can be split between lines.
 
 Given the considerations above we need to:
 
- - separate each line
- - `splitBy` the lines that begins with a `>`
- - concatenate the groups returned by `splitBy`
+ - parse a FASTA format
+ - drop the keys
+ - transpose the resulting matrix
 
 ```haskell
-readInput :: String -> [String]
-readInput = filter (/="") . map concat . splitBy ((=='>') . head) . lines
+readInput :: String -> [[Char]]
+readInput = transpose . Map.elems . Fasta.parse
 ```
 
 ####Profile matrix
@@ -51,47 +51,32 @@ We can see the profile matrix as a `Map Char [Int]`, which maps one of the lette
 type ProfileMat = Map Char [Int]
 ```
 
-To generate the profile matrix we can fold our matrix with the above matrix as the counter:
+To generate the profile matrix we can fold our matrix:
 
 ```haskell
-profileMat :: [String] -> ProfileMat
-profileMat = foldRCol fn iniMap 
+profileMat :: [[Char]] -> ProfileMat
+profileMat = foldr updateMap iniMap 
     where iniMap = Map.fromList 
               [ ('A', [])
               , ('C', [])
               , ('G', [])
               , ('T', []) ]
-          fn col = Map.mapWithKey ((:) . countElem col)
+          updateMap s c     = Map.mapWithKey (countChar s) c
+          countChar s c l   = countIf (==c) s : l
 ```
 
 ####Consensus
 
-A consensus is just a string:
+A consensus is just a list of characters:
 
 ```haskell
 type Consensus  = [Char]
 ```
 
-and to calculate it we can fold our matrix with the `mostFrequent` of our set of 4 characters:
+and to calculate it we can fold our matrix with the most frequent letter:
 
 ```haskell
-consensus :: [String] -> Consensus
-consensus = foldRCol ((:) . mostFrequent ['A', 'C', 'G', 'T']) ""
-```
-
-####Output
-
-A list of ints is shown as space-separated:
-
-```haskell
-showList :: [Int] -> String
-showList l = concat . intersperse " " . map show $ l
-```
-
-and a map is shown as a bunch of `key: value` lines:
-
-```haskell
-showMap :: Map Char [Int] -> String
-showMap = Map.foldrWithKey fn ""
-    where fn k v c = concat [[k], ": ", showList v, "\n", c]
+consensus :: [[Char]] -> Consensus
+consensus = map (fst . maximumBy (compare `on` snd) . charMap)
+    where charMap = Map.toList . countDistinct
 ```
