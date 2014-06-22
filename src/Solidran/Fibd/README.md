@@ -50,8 +50,8 @@ With the above informations we are able to calculate the old pairs as well.
 
 To calculate the next step of the sequence we consider two cases:
 
- - we don't have started yet, in which case we are at the startin of the sequence and we will return `Step 1 1`
- - otherwise, in which case we need to apply the above formula
+ - we don't have started yet, in which case we are at the beginning of the sequence and we will return `Step 1 1`
+ - otherwise we need to apply the above formula
 
 And here's our `calcNext` function that takes `m` and the already calculated vector and just builds a new one with the next step on the front:
 
