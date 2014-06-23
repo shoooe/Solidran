@@ -119,3 +119,12 @@ Test-Suite test-solidran
         vector >= 0.10 && < 0.11,
         mtl >= 2.2 && < 2.3
     default-language:       Haskell2010
+
+executable Grph
+    main-is:                Solidran/Grph/Main.hs              
+    build-depends:       
+        base >= 4.6 && < 4.7,
+        containers >= 0.5 && < 0.6
+    hs-source-dirs:         src
+    ghc-options:            -Wall -O2
+    default-language:       Haskell2010
