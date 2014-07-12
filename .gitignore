@@ -2,7 +2,6 @@
 !LICENSE
 !.gitignore
 !*.hs
-!*.lhs
 !dataset.txt
 !*/
 !*.md
