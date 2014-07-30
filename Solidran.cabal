@@ -125,6 +125,14 @@ executable Iev
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
 
+executable Mrna
+    main-is:                Solidran/Mrna/Main.hs              
+    build-depends:       
+        base >= 4.6 && < 4.7
+    hs-source-dirs:         src
+    ghc-options:            -Wall -O2
+    default-language:       Haskell2010
+
 Test-Suite test-solidran
     type:                   exitcode-stdio-1.0
     hs-source-dirs:         test, src
