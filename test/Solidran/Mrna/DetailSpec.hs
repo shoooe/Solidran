@@ -2,6 +2,8 @@ module Solidran.Mrna.DetailSpec (spec) where
 
 import Test.Hspec
 import Solidran.Mrna.Detail
+import Control.Monad (mapM_)
+import Data.List (permutations)
 
 spec :: Spec
 spec = do
@@ -17,4 +19,15 @@ spec = do
                 rnaCombsMod 100000 "SLIDRAN" `shouldBe` 31104
                 rnaCombsMod 100 "SLIDRAN" `shouldBe` 4
             it "should be the same for different permutations" $ do
-                rnaCombsMod 100000 "DRNLISA" `shouldBe` 31104
+                let alphabet = "ILRSS"
+                let perms = permutations alphabet
+                let pairs = zip perms perms
+                mapM_ (\(a, b) -> do
+                    rnaCombsMod 145 a `shouldBe` rnaCombsMod 145 b)
+                        pairs
+            it "should work on long strings" $ do
+                rnaCombsMod 42 (concat
+                    [ "FHFHWIFKHSFRFEGWKKAYTGYYSHWIYREQTYPMSNQMQMPMISAMVCTCFG"
+                    , "FHFHWIFKHSFRFEGWKKAYTGYYSHWIYREQTYPMSNQMQMPMISAMVCTCFG"
+                    , "FHFHWIFKHSFRFEGWKKAYTGYYSHWIYREQTYPMSNQMQMPMISAMVCTCFG" ])
+                    `shouldBe` 18
