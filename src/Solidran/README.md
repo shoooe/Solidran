@@ -52,6 +52,29 @@ groupEvery e l
     | otherwise     = [l]
 ```
 
+##Math
+
+####The `factorial` function
+
+Yes, you can write is as:
+
+```haskell
+factorial :: Int -> Int
+factorial 0 = 1
+factorial n = n * factorial (n - 1)
+```
+
+or simply:
+
+```haskell
+factorial :: Int -> Int
+factotial n = product [1..n]
+```
+
+The actual function returns an `Integer` because the factorial tends to grow really fast and very quick would overflow the limited `Int` capacity. 
+
+With `Integer` the only limit is your computer memory.
+
 ##Output
 
 ####The `Output` class
@@ -124,7 +147,7 @@ parseSingle inp =
 
 The above function splits the string over `\n`, takes the first element (the label) and concatenates the rest.
 
-Mapping the above function ober the splitted (on `>`) list gives us the resulting `Map`:
+Mapping the above function over the splitted (on `>`) list gives us the resulting `Map`:
 
 ```haskell
 parse :: String -> Map String String

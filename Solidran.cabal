@@ -133,6 +133,15 @@ executable Mrna
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
 
+executable Perm
+    main-is:                Solidran/Perm/Main.hs              
+    build-depends:       
+        base >= 4.6 && < 4.7,
+        containers >= 0.5 && < 0.6
+    hs-source-dirs:         src
+    ghc-options:            -Wall -O2
+    default-language:       Haskell2010
+
 Test-Suite test-solidran
     type:                   exitcode-stdio-1.0
     hs-source-dirs:         test, src
