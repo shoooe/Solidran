@@ -142,6 +142,14 @@ executable Perm
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
 
+executable Lexf
+    main-is:                Solidran/Lexf/Main.hs              
+    build-depends:       
+        base
+    hs-source-dirs:         src
+    ghc-options:            -Wall -O2
+    default-language:       Haskell2010
+
 Test-Suite test-solidran
     type:                   exitcode-stdio-1.0
     hs-source-dirs:         test, src
