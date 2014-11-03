@@ -8,13 +8,13 @@ author:             Jefffrey
 maintainer:         notjefff@gmail.com
 build-type:         Simple
 extra-source-files: README.md
-cabal-version:      >=1.10
+cabal-version:      >= 1.10
 
 executable Dna
     main-is:                Solidran/Dna/Main.hs              
     build-depends:       
-        base >= 4.6 && < 4.7,
-        containers >= 0.5 && < 0.6
+        base,
+        containers
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
@@ -22,7 +22,7 @@ executable Dna
 executable Rna
     main-is:                Solidran/Rna/Main.hs              
     build-depends:       
-        base >= 4.6 && < 4.7
+        base
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
@@ -30,7 +30,7 @@ executable Rna
 executable Revc
     main-is:                Solidran/Revc/Main.hs              
     build-depends:       
-        base >= 4.6 && < 4.7
+        base
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
@@ -38,7 +38,7 @@ executable Revc
 executable Fib
     main-is:                Solidran/Fib/Main.hs              
     build-depends:       
-        base >= 4.6 && < 4.7
+        base
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
@@ -46,9 +46,9 @@ executable Fib
 executable Gc
     main-is:                Solidran/Gc/Main.hs              
     build-depends:       
-        base >= 4.6 && < 4.7,
-        text >= 1.1 && < 1.2,
-        containers >= 0.5 && < 0.6
+        base,
+        text,
+        containers
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
@@ -56,7 +56,7 @@ executable Gc
 executable Hamm
     main-is:                Solidran/Hamm/Main.hs              
     build-depends:       
-        base >= 4.6 && < 4.7
+        base
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
@@ -64,9 +64,9 @@ executable Hamm
 executable Iprb
     main-is:                Solidran/Iprb/Main.hs              
     build-depends:       
-        base >= 4.6 && < 4.7,
-        containers >= 0.5 && < 0.6,
-        mtl >= 2.2 && < 2.3
+        base,
+        containers,
+        mtl
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
@@ -74,8 +74,8 @@ executable Iprb
 executable Prot
     main-is:                Solidran/Prot/Main.hs              
     build-depends:       
-        base >= 4.6 && < 4.7,
-        containers >= 0.5 && < 0.6
+        base,
+        containers
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
@@ -83,8 +83,8 @@ executable Prot
 executable Subs
     main-is:                Solidran/Subs/Main.hs              
     build-depends:       
-        base >= 4.6 && < 4.7,
-        containers >= 0.5 && < 0.6
+        base,
+        containers
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
@@ -92,8 +92,8 @@ executable Subs
 executable Cons
     main-is:                Solidran/Cons/Main.hs              
     build-depends:       
-        base >= 4.6 && < 4.7, 
-        containers >= 0.5 && < 0.6
+        base,
+        containers
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
@@ -101,9 +101,9 @@ executable Cons
 executable Fibd
     main-is:                Solidran/Fibd/Main.hs              
     build-depends:       
-        base >= 4.6 && < 4.7,
-        vector >= 0.10 && < 0.11,
-        mtl >= 2.2 && < 2.3
+        base,
+        vector,
+        mtl
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
@@ -111,8 +111,8 @@ executable Fibd
 executable Grph
     main-is:                Solidran/Grph/Main.hs              
     build-depends:       
-        base >= 4.6 && < 4.7,
-        containers >= 0.5 && < 0.6
+        base,
+        containers
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
@@ -120,7 +120,7 @@ executable Grph
 executable Iev
     main-is:                Solidran/Iev/Main.hs              
     build-depends:       
-        base >= 4.6 && < 4.7
+        base
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
@@ -128,7 +128,7 @@ executable Iev
 executable Mrna
     main-is:                Solidran/Mrna/Main.hs              
     build-depends:       
-        base >= 4.6 && < 4.7
+        base
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
@@ -136,8 +136,8 @@ executable Mrna
 executable Perm
     main-is:                Solidran/Perm/Main.hs              
     build-depends:       
-        base >= 4.6 && < 4.7,
-        containers >= 0.5 && < 0.6
+        base,
+        containers
     hs-source-dirs:         src
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
@@ -147,9 +147,9 @@ Test-Suite test-solidran
     hs-source-dirs:         test, src
     main-is:                Spec.hs
     build-depends:
-        base >= 4.6 && < 4.7,
-        hspec >= 1.10 && < 1.11,
-        containers >= 0.5 && < 0.6,
-        vector >= 0.10 && < 0.11,
-        mtl >= 2.2 && < 2.3
+        base,
+        hspec,
+        containers,
+        vector,
+        mtl
     default-language:       Haskell2010
