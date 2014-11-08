@@ -150,6 +150,15 @@ executable Lexf
     ghc-options:            -Wall -O2
     default-language:       Haskell2010
 
+executable Revp
+    main-is:                Solidran/Revp/Main.hs              
+    build-depends:       
+        base,
+        containers
+    hs-source-dirs:         src
+    ghc-options:            -Wall -O2
+    default-language:       Haskell2010
+
 Test-Suite test-solidran
     type:                   exitcode-stdio-1.0
     hs-source-dirs:         test, src
